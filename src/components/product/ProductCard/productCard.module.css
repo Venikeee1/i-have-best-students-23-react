@@ -1,0 +1,50 @@
+.card {
+  padding: 0 15px;
+  color: #fff;
+  width: 33.333%;
+  margin-bottom: 30px;
+}
+
+.cardInner {
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+
+.cardInner:hover .content,
+.cardInner:hover::before {
+  opacity: 1;
+}
+
+.cardInner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 29, 45, 0.7);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.photo {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.description {
+  margin-top: 0;
+}
