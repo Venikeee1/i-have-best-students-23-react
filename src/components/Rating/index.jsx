@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './rating.module.css';
+import svgPath from './svg/foo.svg';
 
-const Rating = ({ rating, limit, foo }) => {
+console.log(svgPath);
+const Rating = ({ rating, limit }) => {
   const coloredRatingWidth = (rating / limit) * 100 + '%';
   let emptyStarsList = [];
   let coloredStarsList = [];
-  console.log(foo);
 
   for (let i = 0; i < limit; i++) {
     emptyStarsList.push(
@@ -32,6 +33,7 @@ const Rating = ({ rating, limit, foo }) => {
 
   return (
     <div className={styles.rating}>
+      <img src={svgPath} alt="" />
       <div className={styles.emptyStars}>
         <EmptyStars />
         <div
