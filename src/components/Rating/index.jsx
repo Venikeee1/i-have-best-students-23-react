@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './rating.module.css';
 import svgPath from './svg/foo.svg';
 
-console.log(svgPath);
 const Rating = ({ rating, limit }) => {
   const coloredRatingWidth = (rating / limit) * 100 + '%';
   let emptyStarsList = [];

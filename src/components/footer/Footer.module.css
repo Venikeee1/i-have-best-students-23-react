@@ -1,0 +1,7 @@
+@value colors: '../../assets/styles/variables/colors.css';
+@value bgColor from colors;
+
+.footer {
+  background: bgColor;
+  height: 30px;
+}

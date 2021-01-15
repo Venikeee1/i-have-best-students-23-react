@@ -1,0 +1,16 @@
+.authInput {
+  margin-bottom: 25px;
+}
+
+.authInput:last-child {
+  margin-bottom: 0;
+}
+
+.authButton {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.authStyle {
+  text-align: center;
+}

@@ -1,0 +1,14 @@
+@value colors: '../../../assets/styles/variables/colors.css';
+@value mainColor from colors;
+
+.button {
+  background: mainColor;
+  border: 1px solid mainColor;
+  height: 48px;
+  padding: 8px 15px;
+  font-size: 18px;
+  font-family: sans-serif;
+  min-width: 150px;
+  color: #fff;
+  cursor: pointer;
+}
