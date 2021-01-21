@@ -42,12 +42,14 @@ class Login extends Component {
               className={styles.authInput}
               name="login"
               placeholder="Login"
+              autoComplete="username"
               onChange={this.handleChange}
             />
             <Input
               className={styles.authInput}
               name="password"
               placeholder="Password"
+              autoComplete="new-password"
               type="password"
               onChange={this.handleChange}
             />

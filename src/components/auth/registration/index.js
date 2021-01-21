@@ -16,6 +16,10 @@ class Login extends Component {
     },
   };
 
+  componentDidMount() {
+    console.log('mounted');
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state.formData);
@@ -44,6 +48,7 @@ class Login extends Component {
               className={styles.authInput}
               name="name"
               placeholder="Name"
+              autoComplete="username"
               onChange={this.handleChange}
             />
             <Input
@@ -51,12 +56,14 @@ class Login extends Component {
               type="email"
               name="email"
               placeholder="Email"
+              autoComplete="user-email"
               onChange={this.handleChange}
             />
             <Input
               className={styles.authInput}
               name="password"
               placeholder="Password"
+              autoComplete="new-password"
               type="password"
               onChange={this.handleChange}
             />
@@ -64,6 +71,7 @@ class Login extends Component {
               className={styles.authInput}
               name="confirmPassword"
               type="password"
+              autoComplete="user-password"
               placeholder="Confirm password"
               onChange={this.handleChange}
             />

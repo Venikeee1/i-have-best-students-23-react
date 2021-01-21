@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 import styles from './Input.module.css';
 
 const Input = (props) => {
   const { name, type, label, className, ...restProps } = props;
-  const id = Date.now();
+  const id = nanoid();
   const classList = [className, styles.inputWrapper].join(' ');
 
   return (

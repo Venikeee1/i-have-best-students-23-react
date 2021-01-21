@@ -47,4 +47,8 @@
 
 .description {
   margin-top: 0;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
 }

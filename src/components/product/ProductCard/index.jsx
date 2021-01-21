@@ -38,4 +38,4 @@ ProductCard.propTypes = {
   description: PropTypes.string,
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

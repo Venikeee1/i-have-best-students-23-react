@@ -4,17 +4,18 @@ import ProductCard from '../ProductCard';
 import styles from './productList.module.css';
 
 const ProductList = ({ items }) => {
+  console.log('up');
   return (
     <div className={styles.list}>
       {items.length === 0
         ? 'ничего не найдено'
-        : items.map(({ id, imgSrc, price, rating, description }) => (
+        : items.map(({ id, imgUrl, price, rating, descr }) => (
             <ProductCard
               key={id}
-              imgSrc={imgSrc}
+              imgSrc={imgUrl}
               price={price}
               rating={rating}
-              description={description}
+              description={descr}
             />
           ))}
     </div>
