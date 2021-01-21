@@ -25,10 +25,7 @@ const ProductCard = ({ imgSrc, price, rating, description }) => {
 ProductCard.defaultProps = {
   imgSrc:
     'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2&h=480&w=640',
-  description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus
-      ullam labore veritatis voluptates, tempore nobis perspiciatis cum in
-      odit beatae atque incidunt, sequi facere fuga maiores possimus, eveniet
-      obcaecati voluptatem!`,
+  description: '',
 };
 
 ProductCard.propTypes = {

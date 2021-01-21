@@ -2,3 +2,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+.apartmentsActions {
+  display: flex;
+}
+
+.apartmentsSelect {
+  margin-right: 15px;
+  width: 220px;
+}
+
+.apartmentsInput {
+  width: 220px;
+}

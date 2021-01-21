@@ -5,18 +5,24 @@ import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import styles from './Login.module.css';
+import { loginUser } from '../../../services/auth.service';
 
 class Login extends Component {
   state = {
     formData: {
-      login: '',
+      email: '',
       password: '',
     },
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state.formData);
+
+    try {
+      await loginUser(this.state.formData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   handleChange = (event) => {
@@ -40,9 +46,9 @@ class Login extends Component {
           <form onSubmit={this.handleSubmit}>
             <Input
               className={styles.authInput}
-              name="login"
-              placeholder="Login"
-              autoComplete="username"
+              name="email"
+              placeholder="Email"
+              autoComplete="email"
               onChange={this.handleChange}
             />
             <Input

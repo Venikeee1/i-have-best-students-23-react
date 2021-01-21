@@ -2,8 +2,6 @@
 @value mainColor from colors;
 
 .button {
-  background: mainColor;
-  border: 1px solid mainColor;
   height: 48px;
   padding: 8px 15px;
   font-size: 18px;
@@ -11,4 +9,26 @@
   min-width: 150px;
   color: #fff;
   cursor: pointer;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.buttonSuccess {
+  background: green;
+  border: 1px solid green;
+}
+
+.buttonDefault {
+  border: 1px solid transparent;
+  background: mainColor;
+}
+
+.buttonOutlined {
+  background: none;
+  border: 1px solid mainColor;
+  color: mainColor;
+}
+
+.buttonOutlined:hover {
+  background: mainColor;
+  color: #fff;
 }
