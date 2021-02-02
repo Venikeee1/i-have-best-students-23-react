@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard';
+import SideBar from '../../side-bar';
 import styles from './productList.module.css';
 
 const ProductList = ({ items }) => {
-  console.log('up');
+  const [selectedApartment, setSelectedApartment] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleApartmentClick = (selectedApartment) => () => {
+    setSelectedApartment(selectedApartment);
+    setIsOpen(true);
+  };
+
+  const handleSideBarClose = () => {
+    setIsOpen(false);
+  };
+
+  const ApartmentsList = ({ apartments }) => {
+    return apartments.map((apartment) => {
+      const { id, imgUrl, price, rating, descr } = apartment;
+
+      return (
+        <ProductCard
+          key={id}
+          imgSrc={imgUrl}
+          price={price}
+          rating={rating}
+          description={descr}
+          onClick={handleApartmentClick(apartment)}
+        />
+      );
+    });
+  };
+
   return (
     <div className={styles.list}>
-      {items.length === 0
-        ? 'ничего не найдено'
-        : items.map(({ id, imgUrl, price, rating, descr }) => (
-            <ProductCard
-              key={id}
-              imgSrc={imgUrl}
-              price={price}
-              rating={rating}
-              description={descr}
-            />
-          ))}
+      {items.length === 0 ? (
+        'ничего не найдено'
+      ) : (
+        <ApartmentsList apartments={items} />
+      )}
+      {selectedApartment && isOpen && (
+        <SideBar onClose={handleSideBarClose} {...selectedApartment} />
+      )}
     </div>
   );
 };

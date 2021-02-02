@@ -6,12 +6,41 @@ import ApartmentsFilter from '../components/homepage/apartments-filter';
 import { getApartments } from '../services/apartments.service';
 import debounce from 'lodash.debounce';
 
+import {
+  PopupboxManager,
+  PopupboxContainer
+} from 'react-popupbox';
+
+export class Example extends Component {
+  openPopupbox() {
+    const content = (
+      <div>
+        <p className="quotes">Work like you don't need the money.</p>
+        <p className="quotes">Dance like no one is watching.</p>
+        <p className="quotes">And love like you've never been hurt.</p>
+        <span className="quotes-from">― Mark Twain</span>
+      </div>
+    )
+    PopupboxManager.open({ content })
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.openPopupbox}>Click me</button>
+        <PopupboxContainer />
+      </div>
+    )
+  }
+}
+
 class Homepage extends Component {
   state = {
     apartments: [],
     filterPrice: 0,
     cities: [],
     filterCity: '',
+    selectedApartment: null,
   };
 
   filterApartmentsByPrice = (event) => {
@@ -28,6 +57,10 @@ class Homepage extends Component {
     this.setState(() => ({
       filterCity: value,
     }));
+  };
+
+  onFileChange = (event) => {
+    console.log(event.target.files);
   };
 
   async componentDidMount() {
@@ -55,6 +88,11 @@ class Homepage extends Component {
     return (
       <main className="homepage">
         <Container>
+          <input
+            onChange={this.onFileChange}
+            type="file"
+            style={{ margin: '50px' }}
+          />
           <ApartmentsFilter
             cities={cities}
             handleChange={debounce(this.filterApartmentsByPrice, 200)}

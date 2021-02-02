@@ -11,8 +11,8 @@ function App() {
   return (
     <>
       <Homepage />
-      <Login />
-      <Registration />
+      {/* <Login /> */}
+      {/* <Registration /> */}
       {/* <ApartmentsPage />*/}
       <Footer />
     </>

@@ -4,11 +4,11 @@ import Rating from '../../Rating';
 import Price from './ProductPrice';
 import styles from './productCard.module.css';
 
-const ProductCard = ({ imgSrc, price, rating, description }) => {
+const ProductCard = ({ imgSrc, price, rating, description, onClick }) => {
   const hasHighRating = rating >= 4;
 
   return (
-    <section className={styles.card}>
+    <section onClick={onClick} className={styles.card}>
       <div className={styles.cardInner}>
         <img className={styles.photo} src={imgSrc} alt="фото апартаментов" />
         <div className={styles.content}>
@@ -33,6 +33,7 @@ ProductCard.propTypes = {
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   description: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default React.memo(ProductCard);
