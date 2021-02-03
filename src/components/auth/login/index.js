@@ -6,6 +6,7 @@ import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import styles from './Login.module.css';
 import { loginUser } from '../../../services/auth.service';
+import { paths } from '../../../router/Router';
 
 class Login extends Component {
   state = {
@@ -18,11 +19,13 @@ class Login extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      await loginUser(this.state.formData);
-    } catch (error) {
-      console.error(error);
-    }
+    this.props.history.replace(paths.MAIN);
+
+    // try {
+    //   await loginUser(this.state.formData);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   handleChange = (event) => {

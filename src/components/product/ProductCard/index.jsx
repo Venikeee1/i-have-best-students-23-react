@@ -1,10 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Rating from '../../Rating';
 import Price from './ProductPrice';
 import styles from './productCard.module.css';
 
-const ProductCard = ({ imgSrc, price, rating, description }) => {
+const ProductCard = ({ imgSrc, price, rating, description, link }) => {
   const hasHighRating = rating >= 4;
 
   return (
@@ -16,6 +17,7 @@ const ProductCard = ({ imgSrc, price, rating, description }) => {
           <p className={styles.description}>{description}</p>
           <Rating rating={rating} foo />
           <Price value={price} />
+          <NavLink to={link} className={styles.navLink} />
         </div>
       </div>
     </section>
@@ -33,6 +35,7 @@ ProductCard.propTypes = {
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   description: PropTypes.string,
+  link: PropTypes.string.isRequired,
 };
 
 export default React.memo(ProductCard);

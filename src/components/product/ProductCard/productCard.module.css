@@ -52,3 +52,11 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
 }
+
+.navLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

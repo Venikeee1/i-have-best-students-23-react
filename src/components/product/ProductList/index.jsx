@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard';
 import styles from './productList.module.css';
+import { paths } from '../../../router/Router';
 
 const ProductList = ({ items }) => {
   console.log('up');
@@ -16,6 +17,7 @@ const ProductList = ({ items }) => {
               price={price}
               rating={rating}
               description={descr}
+              link={paths.APARTMENT(id)}
             />
           ))}
     </div>
