@@ -1,9 +1,20 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Homepage from '../pages/Homepage';
-import ApartmentsPage from '../pages/Apartment';
-import Login from '../components/auth/login';
-import Registration from '../components/auth/registration';
+import asyncComponent from '../components/async-loader';
+
+const Registration = asyncComponent({
+  loader: () => import('../components/auth/registration'),
+});
+
+const Login = asyncComponent({
+  loader: () => import('../components/auth/login'),
+});
+
+const Homepage = asyncComponent({
+  loader: () => import('../pages/Homepage'),
+});
+
+const ApartmentsPage = lazy(() => import('../pages/Apartment'));
 
 export const paths = {
   MAIN: '/',
@@ -12,18 +23,39 @@ export const paths = {
   APARTMENT: (id) => `/apartment/${id}`,
 };
 
+const routes = [
+  {
+    path: paths.MAIN,
+    component: Homepage,
+    exact: true,
+  },
+  {
+    path: paths.LOGIN,
+    component: Login,
+  },
+  {
+    path: paths.REGISTRATION,
+    component: Registration,
+  },
+  {
+    path: paths.APARTMENT(':id'),
+    component: ApartmentsPage,
+  },
+];
+
 const Router = () => {
   return (
     <Switch>
-      <Route path={paths.MAIN} exact component={Homepage} />
-      <Route
-        path={paths.LOGIN}
-        render={(props) => {
-          return <Login {...props} extraPropName="value" />;
-        }}
-      />
-      <Route path={paths.REGISTRATION} component={Registration} />
-      <Route path={paths.APARTMENT(':id')} component={ApartmentsPage} />
+      <Suspense fallback={<h1>loading...</h1>}>
+        {routes.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            exact={route.exact}
+            component={route.component}
+          />
+        ))}
+      </Suspense>
     </Switch>
   );
 };

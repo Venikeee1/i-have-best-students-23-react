@@ -64,3 +64,17 @@
   margin: 0.8em 0;
   font-weight: 600;
 }
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}
+
+.svg-sprite {
+  fill: currentColor;
+}
