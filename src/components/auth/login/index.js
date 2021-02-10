@@ -7,6 +7,15 @@ import AuthSection from '../auth-section';
 import styles from './Login.module.css';
 import { loginUser } from '../../../services/auth.service';
 import { paths } from '../../../router/Router';
+import { UserConsumer } from '../../../context/UserContext';
+import { withUserData } from '../../../context/UserContext';
+
+const Info = ({ user }) => (
+  <div>
+    Name: {user.name}, age: {user.age}
+  </div>
+);
+const InfoWithUserData = withUserData(Info);
 
 class Login extends Component {
   state = {
@@ -45,7 +54,12 @@ class Login extends Component {
     return (
       <AuthSection as="article">
         <AuthCard>
-          <Title className={styles.authStyle}>Логин</Title>
+          <InfoWithUserData />
+          <UserConsumer>
+            {({ name }) => (
+              <Title className={styles.authStyle}>Логин {name}</Title>
+            )}
+          </UserConsumer>
           <form onSubmit={this.handleSubmit}>
             <Input
               className={styles.authInput}

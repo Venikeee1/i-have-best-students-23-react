@@ -5,6 +5,8 @@ import MainTitle from '../components/UI/typography/title';
 import ApartmentsFilter from '../components/homepage/apartments-filter';
 import { getApartments } from '../services/apartments.service';
 import debounce from 'lodash.debounce';
+import Tooltip from '../components/UI/Tooltip';
+import MouseTracker from '../components/MouseTracker';
 
 class Homepage extends Component {
   state = {
@@ -60,7 +62,24 @@ class Homepage extends Component {
             handleChange={debounce(this.filterApartmentsByPrice, 200)}
             handleCityChange={this.handleCityChange}
           />
-          <MainTitle>Подборка согласно выбора</MainTitle>
+          <Tooltip>
+            {({ hide, isOpen }) => (
+              <MainTitle onClick={hide}>
+                Подборка согласно выбора : {isOpen.toString()}
+              </MainTitle>
+            )}
+          </Tooltip>
+          <MouseTracker>
+            {({ x, y }) => (
+              <Tooltip>
+                {() => (
+                  <h2>
+                    Coords: {x}, {y}
+                  </h2>
+                )}
+              </Tooltip>
+            )}
+          </MouseTracker>
           <ProductList items={currentApartments} />
         </Container>
       </main>
@@ -69,3 +88,12 @@ class Homepage extends Component {
 }
 
 export default Homepage;
+
+const isLoggedIn = false;
+const withAuth = (WrappedComponent) => {
+  return (props) =>
+    isLoggedIn && <WrappedComponent {...props} isLoggedIn={isLoggedIn} />;
+};
+
+const Description = () => <p>Hello world</p>;
+const DescriptionWithAuth = withAuth(Description);

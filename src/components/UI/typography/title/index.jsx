@@ -5,7 +5,11 @@ const Title = ({ className = '', children, level = 1, ...restProps }) => {
   const TagName = `h${level}`;
   const classList = [className, styles.title].join(' ');
 
-  return <TagName className={classList}>{children}</TagName>;
+  return (
+    <TagName className={classList} {...restProps}>
+      {children}
+    </TagName>
+  );
 };
 
 Title.propTypes = {

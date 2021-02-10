@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Router from './router/Router';
 import Footer from './components/footer';
-
+// import withIcon from './hocs/WithIcon';
+// import withToggle from './hocs/WithToggle';
 import './App.css';
 
-const SvgSprite = ({ icon }) => {
-  return (
-    <svg className="svg-sprite">
-      <use xlinkHref={`/svg/sprite.svg#${icon}`}></use>
-    </svg>
-  );
-};
+// const Title = ({ iconName, isOpen }) => <h1>Super title for : {iconName}</h1>;
+// const TitleWithIconWithToggle = withIcon(
+//   'cloud-computing',
+//   'medium'
+// )(withToggle(Title));
 
-function App() {
+function App({ auth }) {
   return (
     <div className="app-wrapper">
-      <SvgSprite icon="cloud" />
       <div className="app-content">
         <Router />
       </div>
