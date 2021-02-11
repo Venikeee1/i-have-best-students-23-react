@@ -14,6 +14,10 @@ const Homepage = asyncComponent({
   loader: () => import('../pages/Homepage'),
 });
 
+const TodoPage = asyncComponent({
+  loader: () => import('../pages/TodoPage'),
+});
+
 const ApartmentsPage = lazy(() => import('../pages/Apartment'));
 
 export const paths = {
@@ -21,6 +25,7 @@ export const paths = {
   LOGIN: '/login',
   REGISTRATION: '/registration',
   APARTMENT: (id) => `/apartment/${id}`,
+  TODO: `/todo`,
 };
 
 const routes = [
@@ -40,6 +45,10 @@ const routes = [
   {
     path: paths.APARTMENT(':id'),
     component: ApartmentsPage,
+  },
+  {
+    path: paths.TODO,
+    component: TodoPage,
   },
 ];
 

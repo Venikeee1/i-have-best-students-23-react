@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AuthCard from '../auth-card';
 import Input from '../../UI/input';
 import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import styles from './Login.module.css';
-import { loginUser } from '../../../services/auth.service';
 import { paths } from '../../../router/Router';
-import { UserConsumer } from '../../../context/UserContext';
-import { withUserData } from '../../../context/UserContext';
-
-const Info = ({ user }) => (
-  <div>
-    Name: {user.name}, age: {user.age}
-  </div>
-);
-const InfoWithUserData = withUserData(Info);
 
 class Login extends Component {
   state = {
@@ -54,12 +45,7 @@ class Login extends Component {
     return (
       <AuthSection as="article">
         <AuthCard>
-          <InfoWithUserData />
-          <UserConsumer>
-            {({ name }) => (
-              <Title className={styles.authStyle}>Логин {name}</Title>
-            )}
-          </UserConsumer>
+          <Title className={styles.authStyle}>Логин</Title>
           <form onSubmit={this.handleSubmit}>
             <Input
               className={styles.authInput}
@@ -79,6 +65,7 @@ class Login extends Component {
             <PrimaryButton className={styles.authButton} type="submit">
               Вход
             </PrimaryButton>
+            <Link to={paths.REGISTRATION}>Регистрация</Link>
           </form>
         </AuthCard>
       </AuthSection>

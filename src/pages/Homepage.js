@@ -62,24 +62,7 @@ class Homepage extends Component {
             handleChange={debounce(this.filterApartmentsByPrice, 200)}
             handleCityChange={this.handleCityChange}
           />
-          <Tooltip>
-            {({ hide, isOpen }) => (
-              <MainTitle onClick={hide}>
-                Подборка согласно выбора : {isOpen.toString()}
-              </MainTitle>
-            )}
-          </Tooltip>
-          <MouseTracker>
-            {({ x, y }) => (
-              <Tooltip>
-                {() => (
-                  <h2>
-                    Coords: {x}, {y}
-                  </h2>
-                )}
-              </Tooltip>
-            )}
-          </MouseTracker>
+          <MainTitle>Подборка согласно выбора</MainTitle>
           <ProductList items={currentApartments} />
         </Container>
       </main>

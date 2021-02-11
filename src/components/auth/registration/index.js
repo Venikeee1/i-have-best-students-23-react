@@ -4,6 +4,8 @@ import Input from '../../UI/input';
 import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
+import { Link } from 'react-router-dom';
+import { paths } from '../../../router/Router';
 import styles from './Registration.module.css';
 
 class Login extends Component {
@@ -78,6 +80,7 @@ class Login extends Component {
             <PrimaryButton className={styles.authButton} type="submit">
               Вход
             </PrimaryButton>
+            <Link to={paths.LOGIN}>Логин</Link>
           </form>
         </AuthCard>
       </AuthSection>
