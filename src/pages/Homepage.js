@@ -5,8 +5,7 @@ import MainTitle from '../components/UI/typography/title';
 import ApartmentsFilter from '../components/homepage/apartments-filter';
 import { getApartments } from '../services/apartments.service';
 import debounce from 'lodash.debounce';
-import Tooltip from '../components/UI/Tooltip';
-import MouseTracker from '../components/MouseTracker';
+import { connect } from 'react-redux';
 
 class Homepage extends Component {
   state = {
@@ -45,6 +44,7 @@ class Homepage extends Component {
 
   render() {
     const { apartments, filterPrice, cities, filterCity } = this.state;
+    const { name } = this.props;
     const currentApartments = apartments.filter((apartment) => {
       const isHigherPrice = apartment.price >= filterPrice;
       const isCityMatched = filterCity
@@ -70,13 +70,10 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
-
-const isLoggedIn = false;
-const withAuth = (WrappedComponent) => {
-  return (props) =>
-    isLoggedIn && <WrappedComponent {...props} isLoggedIn={isLoggedIn} />;
+const mapStateToProps = (state) => {
+  return {
+    name: state.name,
+  };
 };
 
-const Description = () => <p>Hello world</p>;
-const DescriptionWithAuth = withAuth(Description);
+export default connect(mapStateToProps)(Homepage);

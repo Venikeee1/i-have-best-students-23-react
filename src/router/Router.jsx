@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import asyncComponent from '../components/async-loader';
+import ReduxPage from '../components/redux-example/ReduxPage';
 
 const Registration = asyncComponent({
   loader: () => import('../components/auth/registration'),
@@ -32,6 +33,11 @@ const routes = [
   {
     path: paths.MAIN,
     component: Homepage,
+    exact: true,
+  },
+  {
+    path: '/redux',
+    component: ReduxPage,
     exact: true,
   },
   {
