@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import actions from '../../redux/actions';
+// import actions from '../../redux/actions';
+import { changeAge, changeName } from '../../redux/userReducer';
 
 const ReduxPage = (props) => {
   const { name, age, changeName, changeAge } = props;
@@ -28,8 +29,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeName: (newName) => dispatch(actions.changeName(newName)),
-  changeAge: (age) => dispatch(actions.changeAge(age)),
+  changeName: (newName) => dispatch(changeName(newName)),
+  changeAge: (age) => dispatch(changeAge(age)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReduxPage);

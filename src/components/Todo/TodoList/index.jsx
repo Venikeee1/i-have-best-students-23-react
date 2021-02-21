@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Label from '../Label';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -33,15 +33,40 @@ const Todo = ({ item, onDelete, onComplete }) => {
   );
 };
 
-const TodoList = ({ items, onComplete, onDelete }) => (
-  <TransitionGroup>
-    {items.map((todo) => (
-      <CSSTransition key={todo.id} timeout={400} classNames={styles}>
-        <Todo item={todo} onComplete={onComplete} onDelete={onDelete} />
-      </CSSTransition>
-    ))}
-  </TransitionGroup>
-);
+const TodoItemWithTransition = ({ item, onComplete, onDelete, ...rest }) => {
+  const ref = useRef(null);
+
+  return (
+    <CSSTransition
+      nodeRef={ref}
+      timeout={400}
+      unmountOnExit
+      classNames={styles}
+      {...rest}
+    >
+      <div key={item.id} ref={ref}>
+        <Todo item={item} onComplete={onComplete} onDelete={onDelete} />
+      </div>
+    </CSSTransition>
+  );
+};
+
+const TodoList = ({ items, onComplete, onDelete }) => {
+  return (
+    <TransitionGroup>
+      {items.map((todo) => {
+        return (
+          <TodoItemWithTransition
+            key={todo.id}
+            item={todo}
+            onComplete={onComplete}
+            onDelete={onDelete}
+          />
+        );
+      })}
+    </TransitionGroup>
+  );
+};
 
 TodoList.propTypes = {
   items: PropTypes.array,

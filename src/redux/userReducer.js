@@ -1,21 +1,20 @@
-import { types } from './actions';
+import { createSlice } from '@reduxjs/toolkit';
+import { getItem as getItemFromStorage } from '../services/clientStorage';
 
-const initialState = {
-  name: '',
-  age: '',
-};
+const initialState = getItemFromStorage();
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.CHANGE_NAME:
-      return { ...state, name: action.payload };
+const slice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    changeName(state, action) {
+      state.name = action.payload;
+    },
+    changeAge(state, action) {
+      state.age = action.payload;
+    },
+  },
+});
 
-    case types.CHANGE_AGE:
-      return { ...state, age: action.payload };
-
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+export const { changeName, changeAge } = slice.actions;
+export default slice.reducer;
