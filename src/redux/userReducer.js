@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getItem as getItemFromStorage } from '../services/clientStorage';
 
-const initialState = getItemFromStorage();
+const initialState = getItemFromStorage() ?? {};
 
 const slice = createSlice({
   name: 'user',
