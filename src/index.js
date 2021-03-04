@@ -5,6 +5,11 @@ import { UserProvider } from './context/UserContext';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
+/**
+ * Стор без тулкита
+ * import store from './redux/storeWithoutReduxToolkit/store';
+ */
+
 import store from './redux/store';
 
 ReactDOM.render(

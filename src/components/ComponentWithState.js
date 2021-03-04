@@ -13,7 +13,6 @@ class ComponentWithState extends Component {
         clicks,
       };
     });
-    console.log(this.state.clicks, '---this.state.clicks');
   };
 
   render() {

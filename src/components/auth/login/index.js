@@ -7,6 +7,12 @@ import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import styles from './Login.module.css';
 import { paths } from '../../../router/Router';
+/*
+Метод без редакс тулкита
+import { getSessionOperation as loginUser } from '../../../redux/storeWithoutReduxToolkit/operations';
+*/
+import { loginUser } from '../../../redux/userReducer';
+import { connect } from 'react-redux';
 
 class Login extends Component {
   state = {
@@ -18,14 +24,14 @@ class Login extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+    const { getSessionOperation } = this.props;
 
-    this.props.history.replace(paths.MAIN);
-
-    // try {
-    //   await loginUser(this.state.formData);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      await getSessionOperation(this.state.formData);
+      this.props.history.replace(paths.MAIN);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   handleChange = (event) => {
@@ -73,4 +79,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = {
+  getSessionOperation: (payload) => (dispatch) => dispatch(loginUser(payload)),
+};
+
+export default connect(null, mapDispatchToProps)(Login);

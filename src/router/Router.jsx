@@ -60,8 +60,8 @@ const routes = [
 
 const Router = () => {
   return (
-    <Switch>
-      <Suspense fallback={<h1>loading...</h1>}>
+    <Suspense fallback={<h1>loading...</h1>}>
+      <Switch>
         {routes.map((route) => (
           <Route
             key={route.path}
@@ -70,8 +70,8 @@ const Router = () => {
             component={route.component}
           />
         ))}
-      </Suspense>
-    </Switch>
+      </Switch>
+    </Suspense>
   );
 };
 

@@ -18,13 +18,8 @@ class Login extends Component {
     },
   };
 
-  componentDidMount() {
-    console.log('mounted');
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.formData);
   };
 
   handleChange = (event) => {

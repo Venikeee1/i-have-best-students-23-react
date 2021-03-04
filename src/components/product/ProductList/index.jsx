@@ -5,7 +5,6 @@ import styles from './productList.module.css';
 import { paths } from '../../../router/Router';
 
 const ProductList = ({ items }) => {
-  console.log('up');
   return (
     <div className={styles.list}>
       {items.length === 0
