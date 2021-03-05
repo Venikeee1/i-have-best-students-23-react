@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getItem as getItemFromStorage } from '../services/clientStorage';
 import { loginUser as login } from '../services/auth.service';
 
+const persistData = getItemFromStorage() ?? {};
 const initialState = {
-  userData: getItemFromStorage() ?? {},
   session: {},
   error: null,
   pending: false,
@@ -19,8 +19,17 @@ export const loginUser = createAsyncThunk(
 
 const slice = createSlice({
   name: 'user',
-  initialState,
+  initialState: {
+    ...initialState,
+    ...persistData,
+  },
   reducers: {
+    logout(state) {
+      state = { ...initialState };
+      return state;
+    },
+  },
+  extraReducers: {
     [loginUser.fulfilled]: (state, { payload }) => {
       state.session = payload;
       state.pending = false;
@@ -35,5 +44,5 @@ const slice = createSlice({
   },
 });
 
-export const { changeName, changeAge } = slice.actions;
+export const { logout } = slice.actions;
 export default slice.reducer;

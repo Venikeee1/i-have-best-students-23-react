@@ -6,7 +6,7 @@ import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import styles from './Login.module.css';
-import { paths } from '../../../router/Router';
+import paths from '../../../router/routesPaths';
 /*
 Метод без редакс тулкита
 import { getSessionOperation as loginUser } from '../../../redux/storeWithoutReduxToolkit/operations';

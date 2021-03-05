@@ -5,7 +5,7 @@ import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import { Link } from 'react-router-dom';
-import { paths } from '../../../router/Router';
+import paths from '../../../router/routesPaths';
 import styles from './Registration.module.css';
 
 class Login extends Component {
