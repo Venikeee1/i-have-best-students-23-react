@@ -9,7 +9,7 @@ const ReviewHeader = ({ totalRating, amount }) => {
       <h2 className={styles.title}>Суммарный рейтинг</h2>
       <div className={styles.rating}>
         <span>{amount} отзывов</span>
-        <Rating rating={totalRating} />
+        {!!totalRating && <Rating rating={totalRating} />}
       </div>
     </div>
   );

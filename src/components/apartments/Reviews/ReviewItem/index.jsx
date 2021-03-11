@@ -10,7 +10,7 @@ const ReviewItem = ({ rating, title, description = '' }) => {
         <ReviewAvatar />
         <div className={styles.details}>
           <h2 className={styles.title}>{title}</h2>
-          <Rating rating={rating} />
+          {!!rating && <Rating rating={rating} />}
         </div>
       </div>
       <p className={styles.description}>{description}</p>
@@ -18,8 +18,12 @@ const ReviewItem = ({ rating, title, description = '' }) => {
   );
 };
 
+ReviewItem.defaultProps = {
+  rating: 0,
+};
+
 ReviewItem.propTypes = {
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.number,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
 };

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './Buttons.module.css';
 
-const colors = ['success', 'alert', 'warning'];
+const colors = ['success', 'alert', 'warning', 'default'];
 
 const colorsMap = {
   default: styles.buttonDefault,
@@ -37,7 +37,7 @@ PrimaryButton.defaultProps = {
 
 PrimaryButton.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.string,
+  color: PropTypes.oneOf(colors),
   outlined: PropTypes.bool,
 };
 

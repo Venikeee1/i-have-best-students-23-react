@@ -44,7 +44,6 @@ class Homepage extends Component {
 
   render() {
     const { apartments, filterPrice, cities, filterCity } = this.state;
-    const { name } = this.props;
     const currentApartments = apartments.filter((apartment) => {
       const isHigherPrice = apartment.price >= filterPrice;
       const isCityMatched = filterCity

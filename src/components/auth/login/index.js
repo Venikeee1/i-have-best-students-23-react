@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import AuthCard from '../auth-card';
 import Input from '../../UI/input';
@@ -7,12 +8,10 @@ import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import styles from './Login.module.css';
 import paths from '../../../router/routesPaths';
-/*
-Метод без редакс тулкита
-import { getSessionOperation as loginUser } from '../../../redux/storeWithoutReduxToolkit/operations';
-*/
 import { loginUser } from '../../../redux/userReducer';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 class Login extends Component {
   state = {
@@ -24,13 +23,14 @@ class Login extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { getSessionOperation } = this.props;
+    const { loginUser } = this.props;
 
     try {
-      await getSessionOperation(this.state.formData);
+      const result = await loginUser(this.state.formData);
+      unwrapResult(result);
       this.props.history.replace(paths.MAIN);
     } catch (error) {
-      console.error(error);
+      toast(error.message, { type: 'error' });
     }
   };
 
@@ -79,8 +79,13 @@ class Login extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  getSessionOperation: (payload) => (dispatch) => dispatch(loginUser(payload)),
-};
+// const mapDispatchToProps = {
+//   getSessionOperation: (payload) => async (dispatch) =>
+//     dispatch(loginUser(payload)),
+// };
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch) => ({
+  loginUser: (payload) => dispatch(loginUser(payload)),
+});
+
+export default connect(null, mapDispatchToProps)(withRouter(Login));

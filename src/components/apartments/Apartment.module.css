@@ -5,6 +5,7 @@
 .content {
   display: flex;
   align-items: flex-start;
+  margin-bottom: 80px;
 }
 
 .photo {

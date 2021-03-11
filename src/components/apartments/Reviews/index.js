@@ -30,10 +30,13 @@ class Reviews extends Component {
     const { items, className } = this.props;
     const classList = [styles.reviews, className].join(' ');
 
-    const totalRating = items.reduce(
-      (totalRating, review) => totalRating + review.rating,
-      0
-    );
+    const totalRating = items.reduce((totalRating, review) => {
+      if (review.rating) {
+        return totalRating + review.rating;
+      }
+
+      return totalRating;
+    }, 0);
     const averageRating = +(totalRating / items.length).toFixed(1);
 
     return (
