@@ -2,10 +2,15 @@
 @value bgColor from colors;
 
 .header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
   padding: 15px 0;
   background: bgColor;
   color: #fff;
   margin-bottom: 45px;
+  z-index: 55;
 }
 
 .content {

@@ -1,14 +1,8 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReviewList from './ReviewList';
-import mockedReviews from './reviews.json';
 import ReviewHeader from './ReviewHeader';
 import styles from './Reviews.module.css';
-
-const totalRating = mockedReviews.reduce(
-  (totalRating, review) => totalRating + review.rating,
-  0
-);
-const averageRating = +(totalRating / mockedReviews.length).toFixed(1);
 
 class Reviews extends Component {
   state = {
@@ -23,20 +17,28 @@ class Reviews extends Component {
   };
 
   getCurrentReview = () => {
+    const { items } = this.props;
+
     if (this.state.showAll) {
-      return mockedReviews;
+      return items;
     }
 
-    return mockedReviews.slice(0, this.state.reviewsLimit);
+    return items.slice(0, this.state.reviewsLimit);
   };
 
   render() {
+    const { items, className } = this.props;
+    const classList = [styles.reviews, className].join(' ');
+
+    const totalRating = items.reduce(
+      (totalRating, review) => totalRating + review.rating,
+      0
+    );
+    const averageRating = +(totalRating / items.length).toFixed(1);
+
     return (
-      <div className={styles.reviews}>
-        <ReviewHeader
-          totalRating={averageRating}
-          amount={mockedReviews.length}
-        />
+      <div className={classList}>
+        <ReviewHeader totalRating={averageRating} amount={items.length} />
         <ReviewList reviews={this.getCurrentReview()} />
         <button onClick={this.toggleReviews} className={styles.showMore}>
           Читать еще...
@@ -46,6 +48,12 @@ class Reviews extends Component {
   }
 }
 
-Reviews.propTypes = {};
+Reviews.defaultProps = {
+  items: [],
+};
+
+Reviews.propTypes = {
+  items: PropTypes.array,
+};
 
 export default Reviews;

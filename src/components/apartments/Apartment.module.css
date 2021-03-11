@@ -1,0 +1,32 @@
+.wrapper {
+  margin-top: 80px;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.photo {
+  max-width: 100%;
+}
+
+.heading {
+  display: flex;
+  gap: 15px;
+}
+
+.details {
+  margin-right: 25px;
+}
+
+.additionalInfo {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 350px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}

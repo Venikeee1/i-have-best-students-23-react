@@ -5,11 +5,11 @@ import RouteWithGuard from './RouteWithGuard';
 import paths from './routesPaths';
 
 const Registration = asyncComponent({
-  loader: () => import('../components/auth/registration'),
+  loader: () => import('../pages/Registration'),
 });
 
 const Login = asyncComponent({
-  loader: () => import('../components/auth/login'),
+  loader: () => import('../pages/Login'),
 });
 
 const Homepage = asyncComponent({
