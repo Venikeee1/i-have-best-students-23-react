@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { Provider } from 'react-redux';
+import './i18n';
 import './index.css';
 import App from './App';
 /**

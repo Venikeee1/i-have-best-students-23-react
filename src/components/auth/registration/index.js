@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import AuthCard from '../auth-card';
 import Input from '../../UI/input';
 import PrimaryButton from '../../UI/buttons/PrimaryButton';
@@ -6,7 +6,7 @@ import Title from '../../UI/typography/title';
 import AuthSection from '../auth-section';
 import { Link } from 'react-router-dom';
 import paths from '../../../router/routesPaths';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../redux/userReducer';
 import { toast } from 'react-toastify';
 import { unwrapResult } from '@reduxjs/toolkit';

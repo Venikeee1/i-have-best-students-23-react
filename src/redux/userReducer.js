@@ -45,6 +45,7 @@ const slice = createSlice({
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, { payload }) => {
+      state.error = null;
       state.session = payload;
       state.pending = false;
     },
